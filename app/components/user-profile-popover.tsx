@@ -44,7 +44,10 @@ import {
 } from "~/lib/user-display"
 import { cn } from "~/lib/utils"
 import { useAuthStore } from "~/stores/auth"
-import { useCosmeticsStore } from "~/stores/cosmetics"
+import {
+  EMPTY_EQUIPPED_SLOTS,
+  useCosmeticsStore,
+} from "~/stores/cosmetics"
 import { usePresenceStore } from "~/stores/presence"
 import { usePrivateChannelsStore } from "~/stores/private-channels"
 import {
@@ -102,7 +105,8 @@ export function UserProfilePopover({
   // COSMETIC_LOADOUT_UPDATE 事件实时生效；成员列表已缓存的 listMode 数据可先渲染减少闪现
   const cosmeticsSlots = useCosmeticsStore(
     (s) =>
-      (userId === selfId ? s.loadout : s.equippedByUser[userId]) ?? {},
+      (userId === selfId ? s.loadout : s.equippedByUser[userId]) ??
+      EMPTY_EQUIPPED_SLOTS,
   )
   const avatarFrame = cosmeticsSlots.avatar_frame
   const profileBorder = cosmeticsSlots.profile_border

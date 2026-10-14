@@ -95,7 +95,10 @@ import {
 } from "~/lib/user-display"
 import { cn } from "~/lib/utils"
 import { useAuthStore } from "~/stores/auth"
-import { useCosmeticsStore } from "~/stores/cosmetics"
+import {
+  EMPTY_EQUIPPED_SLOTS,
+  useCosmeticsStore,
+} from "~/stores/cosmetics"
 import { useMembersStore } from "~/stores/members"
 import type { PresenceStatus } from "~/lib/gateway/events"
 import {
@@ -241,7 +244,7 @@ function MemberRow({
   const cosmeticsSlots = useCosmeticsStore(
     (s) =>
       (member.user_id === selfId ? s.loadout : s.equippedByUser[member.user_id]) ??
-      {},
+      EMPTY_EQUIPPED_SLOTS,
   )
   const avatarFrame = cosmeticsSlots.avatar_frame
   const nameplate = cosmeticsSlots.nameplate
