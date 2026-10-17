@@ -6,7 +6,7 @@
 // （"The result of getSnapshot should be cached to avoid an infinite loop"，
 //  最终 "Maximum update depth exceeded"），整页被路由错误边界接管 = 白屏。
 //
-// 取不到缓存时请返回 store 里导出的稳定常量（如 EMPTY_EQUIPPED_SLOTS），
+// 取不到缓存时请直接返回 undefined，并在组件里用可选链读取，
 // 或只订阅单个字段（`s.byUser[id]?.field`，返回原始值）。
 import assert from "node:assert/strict"
 import { readdirSync, readFileSync } from "node:fs"

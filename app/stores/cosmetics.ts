@@ -72,16 +72,6 @@ const empty = {
   shopFilter: {} as { category?: string; tag?: string; q?: string },
 }
 
-/**
- * 稳定的「无装扮」空槽位引用。
- *
- * 组件通过 useCosmeticsStore 选择器读某人装备时，取不到缓存必须返回这个常量，
- * 不能写字面量 `{}`：每次调用都返回新对象会让 useSyncExternalStore 认为快照
- * 一直在变，从而无限重渲染（React: "Maximum update depth exceeded"），
- * 成员面板/资料卡会直接整页报错。
- */
-export const EMPTY_EQUIPPED_SLOTS: Record<string, EquippedSlot> = {}
-
 export const useCosmeticsStore = create<CosmeticsState>((set, get) => ({
   ...empty,
 
